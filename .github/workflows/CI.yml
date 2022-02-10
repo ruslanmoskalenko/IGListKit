@@ -13,7 +13,7 @@ jobs:
     name: Unit Test macOS
     runs-on: macos-11
     env: 
-      DEVELOPER_DIR: /Applications/Xcode_12.5.1.app
+      DEVELOPER_DIR: /Applications/Xcode_13.0.app
       WORKSPACE_NAME: IGListKit.xcworkspace
       SCHEME_NAME: IGListKit-macOS
     steps:
@@ -31,6 +31,9 @@ jobs:
       - name: Install ruby gems.
         run: bundle install
 
+      - name: Install pods.
+        run: pod install
+
       - name: Run unit tests for macOS
         run: |
           set -o pipefail
@@ -41,7 +44,7 @@ jobs:
     name: Unit Test iOS 
     runs-on: macos-11
     env: 
-      DEVELOPER_DIR: /Applications/Xcode_12.5.1.app
+      DEVELOPER_DIR: /Applications/Xcode_13.0.app
       WORKSPACE_NAME: IGListKit.xcworkspace
       SCHEME_NAME: IGListKit
     strategy:
@@ -62,6 +65,9 @@ jobs:
       - name: Install ruby gems.
         run: bundle install
 
+      - name: Install pods.
+        run: pod install
+
       - name: iOS - ${{ matrix.destination }}
         run: |
           set -o pipefail
@@ -72,7 +78,7 @@ jobs:
     name: Cocoapods Lint 
     runs-on: macos-11
     env: 
-      DEVELOPER_DIR: /Applications/Xcode_12.5.1.app
+      DEVELOPER_DIR: /Applications/Xcode_13.0.app
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -101,7 +107,7 @@ jobs:
     name: Verify generate_spm_sources_layout.sh is not broken
     runs-on: macos-11
     env: 
-      DEVELOPER_DIR: /Applications/Xcode_12.5.1.app
+      DEVELOPER_DIR: /Applications/Xcode_13.0.app
       WORKSPACE_NAME: IGListKit.xcworkspace
       PROJECT_NAME: IGListKit.xcodeproj
       IOS_DESTINATION: "name=iPhone 12 Pro"
@@ -135,7 +141,7 @@ jobs:
     name: Verify SPM build by invoking `xcodebuild` on Package.swift
     runs-on: macos-11
     env: 
-      DEVELOPER_DIR: /Applications/Xcode_12.5.1.app
+      DEVELOPER_DIR: /Applications/Xcode_13.0.app
       WORKSPACE_NAME: IGListKit.xcworkspace
       PROJECT_NAME: IGListKit.xcodeproj
       IOS_DESTINATION: "name=iPhone 12 Pro"
@@ -160,7 +166,7 @@ jobs:
     name: Verify Carthage build XCFramework 
     runs-on: macos-11
     env: 
-      DEVELOPER_DIR: /Applications/Xcode_12.5.1.app
+      DEVELOPER_DIR: /Applications/Xcode_13.0.app
     steps:
       - name: Checkout
         uses: actions/checkout@v2
